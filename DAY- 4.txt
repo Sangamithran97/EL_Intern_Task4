@@ -1,0 +1,44 @@
+Task -4 
+
+Configure and testing basic firewall rules to allow or block traffic.
+
+Tools: Windows Defender firewall, Termux(to use in phone)
+
+*I have opened the windows defender firewall-> Advanced settings-> Inbound rules-> New Rule.
+
+* Inside new rule we have to select Port->TCP->Specified port(Enter the port number for Telnet- Eg:23)->Action: Block the Connection->Profiles: private,public,domain-> Name: Set a name and give finish.
+
+* This will create a firewall and block all connections on port 23.
+
+*TO test this, install termux on your phone, and use the command ncat -l -p 23(The port number which you blocked) on your laptop. (Install Nmap-netcat is not already, I have done in task 1)
+
+* In your phone's termux install the required packages by the commands, termux-change-repo-> Select atleast one main mirror repo(go with default)->pkg update && pkg upgrade -y->pkg install busybox -y-> busybox nc <PC_IP> 23
+
+*After executing the command on phone, the firewall will block it and you will see the message for connection refused and if both cmd prompts mirrors without connection refused then the firewall has allowed the connection.
+
+*After this go to Windows firewall advanced settings and delete the firewall you have created.
+
+Summary:
+
+A firewall is a security system that controls incoming and outgoing network traffic based on a set of rules.
+
+How It Filters:
+	Inbound Traffic – Coming into the device
+		Example: Block external computers from accessing port 23 (Telnet)
+
+	Outbound Traffic – Leaving the device
+		Example: Block your app from sending data to a suspicious IP
+
+Rules-Based Filtering
+
+You define rules like:
+
+*Allow port 22 (SSH)
+*Block port 23 (Telnet)
+*Allow traffic only from a certain IP
+
+Profiles – Based on network type:
+
+Public: More strict (e.g., public Wi-Fi)
+Private: Home/trusted networks
+Domain: Work networks
